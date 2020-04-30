@@ -26,7 +26,7 @@ MonoBehaviour:
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
-    eyewearType: 0
+    eyewearType: 2
     stereoFramework: 0
     seeThroughConfiguration: 0
     viewerName: Generic Cardboard
@@ -66,6 +66,6 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: "Microsoft\xAE LifeCam HD-3000"
+    deviceNameSetInEditor: "Microsoft\xAE LifeCam HD-3000 #2"
     turnOffWebCam: 0
     renderTextureLayer: 30

@@ -1,0 +1,34 @@
+﻿<Properties StartupConfiguration="{D58062E2-350B-8111-5116-394817121769}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SensorReader.cs">
+    <Files>
+      <File FileName="Assets/Scripts/VirtualButtons.cs" Line="94" Column="14" />
+      <File FileName="Assets/Scripts/Dashboard.cs" />
+      <File FileName="Assets/Scripts/SensorReader.cs" Line="73" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AR ATM" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="MQTT" expanded="True">
+                <Node name="scripts" expanded="True">
+                  <Node name="test" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="SensorReader.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="26861172-9be1-47fd-aa1e-0215c7671735" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

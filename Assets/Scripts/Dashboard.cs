@@ -8,15 +8,10 @@ public class Dashboard : MonoBehaviour,ITrackableEventHandler
 {
     public GameObject imageTarget;
     public GameObject canvas;
-	public Text timeText;
-    public Text temperatureText;
-    public float temperatureVal;
-
-    public Text humidityText;
-    public float humidityVal;
+	 
 
     int index;
-	public GameObject[] Buttons =new GameObject[3];
+	public GameObject[] Buttons =new GameObject[1];
     
     private bool targetFound = false;
     private TrackableBehaviour mTrackableBehaviour;
@@ -32,17 +27,14 @@ public class Dashboard : MonoBehaviour,ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        if(targetFound){
-            canvas.SetActive (true);
-            //Debug.Log("Target found");
-            timeText.text = System.DateTime.Now.ToString ("h:mm:ss tt");
-            temperatureText.text = temperatureVal.ToString();
-            humidityText.text = humidityVal.ToString();
+        //if(targetFound){
+        //    canvas.SetActive (true);
+			
 
-        }else{
-            canvas.SetActive (false);
+        //}else{
+        //    canvas.SetActive (false);
             
-        }
+        //}
          
     }
 

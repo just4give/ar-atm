@@ -17,12 +17,15 @@ public class SensorReader : MonoBehaviour
     private MqttClient client;
     private System.Random random = new System.Random();
     private bool isCoroutineExecuting = false;
+    private bool changed = false;
+    private string mqttMessage="";
 
     SensorData sensorData = new SensorData();
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Connecting to MQTT ");
         client = new MqttClient("broker.hivemq.com",1883 , false , null ); 
 		
 		// register to message received 
@@ -32,7 +35,7 @@ public class SensorReader : MonoBehaviour
 		client.Connect(clientId); 
 		
 		// subscribe to the topic "/home/temperature" with QoS 2 
-		client.Subscribe(new string[] { "/AHXPD/arduino" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); 
+		client.Subscribe(new string[] { "/ABC/ATM/ACK" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); 
 
         //string strValue = Convert.ToString(value); 
  
@@ -41,24 +44,38 @@ public class SensorReader : MonoBehaviour
  
     }
 
+    public void publish(String message)
+    {
+        Debug.Log("publishing message");
+        
+        client.Publish("/ABC/ATM/RCV", System.Text.Encoding.UTF8.GetBytes(message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+
+    }
+
     void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e) 
 	{ 
 
-        string msg = System.Text.Encoding.UTF8.GetString(e.Message);
-        //Debug.Log ("Received message from " + e.Topic + " : " + msg);
-        sensorData  = JsonUtility.FromJson<SensorData>(msg);
-		//Debug.Log("Temperature:"+sensorData.temperature);
-        
-	} 
+        mqttMessage = System.Text.Encoding.UTF8.GetString(e.Message);
+        Debug.Log(" message received from MQTT server "+ mqttMessage);
+        changed = true;
+
+
+    } 
 
 
     // Update is called once per frame
     void Update()
     {
-        
-        StartCoroutine(UpdateWithDelay(5));
-        //UpdateComponent();
-      
+
+        //StartCoroutine(UpdateWithDelay(5));
+        if (changed)
+        {
+
+            changed = false;
+            gameObject.GetComponent<VirtualButtons>().updateMessageFromMQTT(mqttMessage);
+        }
+
+
     }
 
     IEnumerator UpdateWithDelay(float time) {
@@ -73,10 +90,14 @@ public class SensorReader : MonoBehaviour
 
         isCoroutineExecuting = false;
     }
+
     void UpdateComponent(){
-        //gameObject.GetComponent<Dashboard> ().temperatureVal = random.Next(15, 30);
-        gameObject.GetComponent<Dashboard> ().temperatureVal=sensorData.temperature;
-        gameObject.GetComponent<Dashboard> ().humidityVal=sensorData.humidity;
-        
+        if (changed)
+        {
+            changed = false;
+            gameObject.GetComponent<VirtualButtons>().updateMessageFromMQTT(mqttMessage);
+        }
+       
+
     } 
 }
